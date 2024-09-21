@@ -7,13 +7,13 @@ Web приложение для приемки заказа на доставк�
 ### :database 
 База данных на MS SQL Server 2022. Поднималась на основе образа mcr.microsoft.com/mssql/server:2022-latest.
 
-База проектировалась отдельно от бека, миграции не применялись. SQL-скрипт, используемый для создания таблиц: [createdb.sql](sqlserver/createdb.sql). После поднятия контейнера базы необходимо подключиться к ней и выполнить скрипт.
-
 Команды для пула и запуска образа: 
 ```
 docker pull collisiondotnet/deliveryprojectimages:database
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=StrongSqlServerPassword1!" -p 1433:1433 --name deliveryprojectdb --hostname deliveryprojectdb -d collisiondotnet/deliveryprojectimages:database
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=StrongSqlServerPassword1!" -p 1433:1433 --name deliveryprojectdb --hostname deliveryproject -d collisiondotnet/deliveryprojectimages:database
 ```
+
+База проектировалась отдельно от бека, миграции не применялись. SQL-скрипт, используемый для создания таблиц: [createdb.sql](sqlserver/createdb.sql). После поднятия контейнера базы необходимо подключиться к ней и выполнить скрипт.
 
 Порты контейнеризации: 1433:1433
 
@@ -27,7 +27,11 @@ Credentials для работы с соединением:
 ### :server 
 ASP .NET Core Web API приложение.
 
-Команда для пула образа: ```docker pull collisiondotnet/deliveryprojectimages:server```
+Команда для пула и запуска образа: 
+```
+docker pull collisiondotnet/deliveryprojectimages:server
+docker run -p 8080:8080 --name deliveryprojectserver --hostname deliveryproject collisiondotnet/deliveryprojectimages:server
+```
 
 Порты контейнеризации: 8080:8080
 
@@ -35,7 +39,11 @@ ASP .NET Core Web API приложение.
 ### :client 
 React.js приложение
 
-Команда для пула образа: ```docker pull collisiondotnet/deliveryprojectimages:server```
+Команда для пула и запуска образа: 
+```
+docker pull collisiondotnet/deliveryprojectimages:client
+docker run -p 3000:3000 --name deliveryprojectclient --hostname deliveryproject collisiondotnet/deliveryprojectimages:client
+```
 
 Порты контейнеризации: 3000:3000
 
