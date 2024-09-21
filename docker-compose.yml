@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  deliveryprojectdb:
+    container_name: deliveryprojectdb
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=StrongSqlServerPassword1!
+    ports:
+      - 1433:1433
+    volumes:
+      - ./sqlserver/data:/var/opt/mssql/data
+      - ./sqlserver/log:/var/opt/mssql/log
+  deliveryproject:
+    container_name: deliveryproject
+    image: ${DOCKER_REGISTRY-}deliveryproject
+    build:
+      context: .
+      dockerfile: DeliveryOrders/Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - deliveryprojectdb
+  deliveryprojectclient:
+    container_name: deliveryprojectclient
+    image: ${DOCKER_REGISTRY-}deliveryprojectclient
+    build:
+      context: client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
