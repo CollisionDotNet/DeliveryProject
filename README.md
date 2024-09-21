@@ -2,11 +2,11 @@
 Web приложение для приемки заказа на доставку. Стек: ASP .NET Core, MS SQL Server, EF Core, React.js
 ## Развертывание
 Весь данный проект обернут в контейнеры Docker. Образы доступны на Docker Hub: https://hub.docker.com/r/collisiondotnet/deliveryprojectimages
-##
+
 Образы:
 ### :database 
 База данных на MS SQL Server 2022. Поднималась на основе образа mcr.microsoft.com/mssql/server:2022-latest.
-##
+
 База проектировалась отдельно от бека, миграции не применялись. SQL-скрипт, используемый для создания таблиц: [a relative link](other_file.md)
 ##
 Команда для пула образа: ```docker pull collisiondotnet/deliveryprojectimages:database```
