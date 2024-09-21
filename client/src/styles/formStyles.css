@@ -1,0 +1,20 @@
+.formcont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.forminnercont {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.inputdiv {
+    margin-top: 12px;
+}
+
+.inputlabel {
+    margin: 0px;
+    margin-left: 6px;   
+}
