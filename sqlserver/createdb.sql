@@ -15,7 +15,7 @@ CREATE TABLE Orders
 	SenderCityId INT REFERENCES Cities(Id),
 	SenderAddress NVARCHAR(255) NOT NULL CHECK (SenderAddress != ''), 
 	RecipientCityId INT REFERENCES Cities(Id),
-	RecipientAddress NVARCHAR(255) NOT NULL CHECK (RecepientAddress != ''),
+	RecipientAddress NVARCHAR(255) NOT NULL CHECK (RecipientAddress != ''),
 	Weight FLOAT NOT NULL CHECK (Weight > 0),
 	PickupDate DATE NOT NULL
 );
