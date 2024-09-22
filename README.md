@@ -57,6 +57,17 @@ docker run -p 3000:3000 --name deliveryprojectclient collisiondotnet/deliverypro
 
 ```npm install react-router-dom``` - для рутинга между страницами (приложение спроектировано не как SPA)
 
+## ВНИМАНИЕ
+
+В изначальной версии Readme-файла забыл добавить команды для объединения контейнеров в сеть. После запуска всех контейнеров прокиньте, пожалуйста, команды для их объединения в сеть, иначе HTTP-запросы между контейнерами не будут работать:
+
+```
+docker network create deliverynetwork
+docker network connect deliverynetwork deliveryprojectdb
+docker network connect deliverynetwork deliveryprojectserver
+docker network connect deliverynetwork deliveryprojectclient
+```
+
 ## Некоторые моменты
 Поздновато обнаружил ссылку на связь в случае возникших вопросов, поэтому ТЗ, возможно, были мною трактованы вольно, за что извиняюсь.
 
